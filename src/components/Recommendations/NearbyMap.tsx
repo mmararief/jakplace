@@ -102,9 +102,9 @@ const NearbyMap: React.FC<{ places?: any[] }> = ({ places = [] }) => {
     <Box position="relative">
       <Box
         ref={mapContainer}
-        h="400px"
+        h={{ base: "300px", md: "400px" }}
         w="100%"
-        borderRadius="lg"
+        borderRadius={{ base: "md", md: "lg" }}
         overflow="hidden"
         position="relative"
       />
@@ -115,7 +115,7 @@ const NearbyMap: React.FC<{ places?: any[] }> = ({ places = [] }) => {
           left="50%"
           transform="translate(-50%, -50%)"
         >
-          <Spinner size="xl" />
+          <Spinner size={{ base: "lg", md: "xl" }} />
         </Box>
       )}
     </Box>

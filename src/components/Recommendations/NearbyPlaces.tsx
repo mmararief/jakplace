@@ -156,16 +156,20 @@ const NearbyPlaces: React.FC = () => {
   }
 
   return (
-    <Container maxW="container.xl" py={8}>
-      <VStack spacing={10}>
+    <Container
+      maxW="container.xl"
+      py={{ base: 4, md: 8 }}
+      px={{ base: 4, md: 6 }}
+    >
+      <VStack spacing={{ base: 6, md: 10 }}>
         {/* Header */}
-        <VStack spacing={4} textAlign="center">
+        <VStack spacing={4} textAlign="center" px={{ base: 2, md: 0 }}>
           <HStack spacing={3}>
-            <Box fontSize="2xl" color="teal.500">
+            <Box fontSize={{ base: "xl", md: "2xl" }} color="teal.500">
               📍
             </Box>
             <Heading
-              size="xl"
+              size={{ base: "lg", md: "xl" }}
               bgGradient="linear(to-r, teal.500, teal.300)"
               bgClip="text"
             >
@@ -173,60 +177,75 @@ const NearbyPlaces: React.FC = () => {
             </Heading>
           </HStack>
 
-          <Text color="gray.600" fontSize="lg" maxW="2xl">
+          <Text
+            color="gray.600"
+            fontSize={{ base: "md", md: "lg" }}
+            maxW="2xl"
+            lineHeight="1.6"
+          >
             Discover amazing tourist attractions close to your location
           </Text>
 
           {/* Location Status */}
-          <HStack spacing={4}>
-            {locationStatus === "granted" && (
-              <Badge
-                colorScheme="green"
-                variant="subtle"
-                borderRadius="full"
-                px={4}
-                py={1}
-              >
-                <Box mr={2}>🧭</Box>
-                Using your location
-              </Badge>
-            )}
-            {locationStatus === "denied" && (
-              <Badge
-                colorScheme="orange"
-                variant="subtle"
-                borderRadius="full"
-                px={4}
-                py={1}
-              >
-                <Box mr={2}>📍</Box>
-                Using Jakarta center
-              </Badge>
-            )}
-            {locationStatus === "unavailable" && (
-              <Badge
-                colorScheme="gray"
-                variant="subtle"
-                borderRadius="full"
-                px={4}
-                py={1}
-              >
-                Location unavailable
-              </Badge>
-            )}
+          <VStack spacing={3} align="center">
+            <HStack
+              spacing={{ base: 2, md: 4 }}
+              flexWrap="wrap"
+              justify="center"
+            >
+              {locationStatus === "granted" && (
+                <Badge
+                  colorScheme="green"
+                  variant="subtle"
+                  borderRadius="full"
+                  px={{ base: 3, md: 4 }}
+                  py={1}
+                  fontSize={{ base: "xs", md: "sm" }}
+                >
+                  <Box mr={2}>🧭</Box>
+                  Using your location
+                </Badge>
+              )}
+              {locationStatus === "denied" && (
+                <Badge
+                  colorScheme="orange"
+                  variant="subtle"
+                  borderRadius="full"
+                  px={{ base: 3, md: 4 }}
+                  py={1}
+                  fontSize={{ base: "xs", md: "sm" }}
+                >
+                  <Box mr={2}>📍</Box>
+                  Using Jakarta center
+                </Badge>
+              )}
+              {locationStatus === "unavailable" && (
+                <Badge
+                  colorScheme="gray"
+                  variant="subtle"
+                  borderRadius="full"
+                  px={{ base: 3, md: 4 }}
+                  py={1}
+                  fontSize={{ base: "xs", md: "sm" }}
+                >
+                  Location unavailable
+                </Badge>
+              )}
+            </HStack>
 
             {userLocation && (
               <Button
-                size="sm"
+                size={{ base: "sm", md: "md" }}
                 variant="outline"
                 colorScheme="teal"
                 leftIcon={<RepeatIcon />}
                 onClick={requestLocation}
+                fontSize={{ base: "xs", md: "sm" }}
               >
                 Refresh Location
               </Button>
             )}
-          </HStack>
+          </VStack>
         </VStack>
 
         {/* Map Section */}
@@ -243,19 +262,19 @@ const NearbyPlaces: React.FC = () => {
         </Box>
 
         {/* Places List Section */}
-        <Box w="full">
+        <Box w="full" px={{ base: 2, md: 0 }}>
           <VStack spacing={6}>
-            <HStack justify="space-between" w="full">
-              <VStack align="start" spacing={1}>
-                <Heading size="lg" color="gray.800">
+            <Box w="full" textAlign={{ base: "center", md: "left" }}>
+              <VStack align={{ base: "center", md: "start" }} spacing={1}>
+                <Heading size={{ base: "md", md: "lg" }} color="gray.800">
                   Nearby Attractions
                 </Heading>
-                <Text color="gray.600">
+                <Text color="gray.600" fontSize={{ base: "sm", md: "md" }}>
                   {places.length} place{places.length !== 1 ? "s" : ""} found
                   near you
                 </Text>
               </VStack>
-            </HStack>
+            </Box>
 
             {places.length === 0 ? (
               <Box textAlign="center" py={20}>

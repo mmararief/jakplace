@@ -99,35 +99,49 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
   }, [user]);
 
   return (
-    <Box maxW="container.xl" mx="auto" px={6}>
+    <Box maxW="container.xl" mx="auto" px={{ base: 4, md: 6 }}>
       {/* Hero Section */}
-      <Box textAlign="center" py={16} mb={12}>
+      <Box textAlign="center" py={{ base: 8, md: 16 }} mb={{ base: 8, md: 12 }}>
         <Heading
-          size="2xl"
+          size={{ base: "xl", md: "2xl" }}
           mb={4}
           bgGradient="linear(to-r, teal.500, teal.300)"
           bgClip="text"
+          px={{ base: 2, md: 0 }}
         >
           Welcome to Wisata Jakarta
         </Heading>
-        <Text fontSize="xl" color="gray.600" maxW="2xl" mx="auto" mb={8}>
+        <Text
+          fontSize={{ base: "md", md: "xl" }}
+          color="gray.600"
+          maxW="2xl"
+          mx="auto"
+          mb={8}
+          px={{ base: 2, md: 0 }}
+        >
           Discover the beauty and culture of Jakarta through personalized
           recommendations tailored just for you
         </Text>
         {!user && (
-          <Box>
-            <Text fontSize="lg" color="gray.500" mb={6}>
+          <Box px={{ base: 2, md: 0 }}>
+            <Text fontSize={{ base: "md", md: "lg" }} color="gray.500" mb={6}>
               Sign in to get personalized recommendations based on your
               preferences
             </Text>
-            <HStack spacing={4} justify="center">
+            <HStack
+              spacing={{ base: 2, md: 4 }}
+              justify="center"
+              flexWrap="wrap"
+              gap={{ base: 2, md: 0 }}
+            >
               <Button
                 as="a"
                 href="/login"
                 colorScheme="teal"
-                size="lg"
+                size={{ base: "md", md: "lg" }}
                 borderRadius="full"
-                px={8}
+                px={{ base: 6, md: 8 }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 Sign In
               </Button>
@@ -136,9 +150,10 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
                 href="/register"
                 variant="outline"
                 colorScheme="teal"
-                size="lg"
+                size={{ base: "md", md: "lg" }}
                 borderRadius="full"
-                px={8}
+                px={{ base: 6, md: 8 }}
+                fontSize={{ base: "sm", md: "md" }}
               >
                 Sign Up
               </Button>
@@ -160,7 +175,12 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
           </Box>
 
           {loadingRec ? (
-            <Box display="flex" flexWrap="wrap" gap={8} justifyContent="center">
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              gap={{ base: 4, md: 8 }}
+              justifyContent="center"
+            >
               {[...Array(3)].map((_, i) => (
                 <Box key={i} maxW="320px" w="full">
                   <Skeleton h="220px" mb={4} borderRadius="2xl" />
@@ -171,26 +191,36 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
           ) : errorRec ? (
             <Box
               textAlign="center"
-              py={12}
+              py={{ base: 8, md: 12 }}
               bg="red.50"
               borderRadius="xl"
               border="1px"
               borderColor="red.100"
+              mx={{ base: 2, md: 0 }}
             >
-              <Text color="red.500" fontSize="lg">
+              <Text
+                color="red.500"
+                fontSize={{ base: "md", md: "lg" }}
+                px={{ base: 2, md: 0 }}
+              >
                 {errorRec}
               </Text>
             </Box>
           ) : recommendations.length === 0 ? (
             <Box
               textAlign="center"
-              py={12}
+              py={{ base: 8, md: 12 }}
               bg="gray.50"
               borderRadius="xl"
               border="1px"
               borderColor="gray.200"
+              mx={{ base: 2, md: 0 }}
             >
-              <Text color="gray.500" fontSize="lg">
+              <Text
+                color="gray.500"
+                fontSize={{ base: "md", md: "lg" }}
+                px={{ base: 2, md: 0 }}
+              >
                 No personalized recommendations yet. Explore some places to get
                 started!
               </Text>
@@ -199,7 +229,7 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
             <Box
               display="flex"
               flexWrap="wrap"
-              gap={8}
+              gap={{ base: 4, md: 8 }}
               justifyContent="center"
               mb={6}
             >
@@ -213,19 +243,28 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
 
       {/* Category-based Recommendations */}
       {user && user.preferences && user.preferences.length > 0 && (
-        <Box mb={16}>
-          <Box mb={8}>
-            <Heading size="lg" mb={2}>
+        <Box mb={{ base: 8, md: 16 }}>
+          <Box mb={8} px={{ base: 2, md: 0 }}>
+            <Heading size={{ base: "md", md: "lg" }} mb={2}>
               ⭐ Based on Your Interests
             </Heading>
-            <Text color="gray.600" fontSize="lg">
+            <Text
+              color="gray.600"
+              fontSize={{ base: "sm", md: "lg" }}
+              lineHeight="1.5"
+            >
               Places matching your favorite categories:{" "}
               {user.preferences.join(", ")}
             </Text>
           </Box>
 
           {loadingCat ? (
-            <Box display="flex" flexWrap="wrap" gap={8} justifyContent="center">
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              gap={{ base: 4, md: 8 }}
+              justifyContent="center"
+            >
               {[...Array(3)].map((_, i) => (
                 <Box key={i} maxW="320px" w="full">
                   <Skeleton h="220px" mb={4} borderRadius="2xl" />
@@ -236,31 +275,46 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
           ) : errorCat ? (
             <Box
               textAlign="center"
-              py={12}
+              py={{ base: 8, md: 12 }}
               bg="red.50"
               borderRadius="xl"
               border="1px"
               borderColor="red.100"
+              mx={{ base: 2, md: 0 }}
             >
-              <Text color="red.500" fontSize="lg">
+              <Text
+                color="red.500"
+                fontSize={{ base: "md", md: "lg" }}
+                px={{ base: 2, md: 0 }}
+              >
                 {errorCat}
               </Text>
             </Box>
           ) : categoryRecs.length === 0 ? (
             <Box
               textAlign="center"
-              py={12}
+              py={{ base: 8, md: 12 }}
               bg="gray.50"
               borderRadius="xl"
               border="1px"
               borderColor="gray.200"
+              mx={{ base: 2, md: 0 }}
             >
-              <Text color="gray.500" fontSize="lg">
+              <Text
+                color="gray.500"
+                fontSize={{ base: "md", md: "lg" }}
+                px={{ base: 2, md: 0 }}
+              >
                 No category recommendations found.
               </Text>
             </Box>
           ) : (
-            <Box display="flex" flexWrap="wrap" gap={8} justifyContent="center">
+            <Box
+              display="flex"
+              flexWrap="wrap"
+              gap={{ base: 4, md: 8 }}
+              justifyContent="center"
+            >
               {categoryRecs.map((place) => (
                 <PlaceCard key={place.id} place={place} />
               ))}
@@ -270,30 +324,43 @@ const HomePage: React.FC<{ userId?: number }> = ({ userId }) => {
       )}
 
       {/* Call to Action */}
-      <Box textAlign="center" py={16}>
+      <Box textAlign="center" py={{ base: 8, md: 16 }} px={{ base: 2, md: 0 }}>
         <Box
           bg="gradient-to-br from-teal-50 to-teal-100"
-          p={12}
+          p={{ base: 6, md: 12 }}
           borderRadius="3xl"
           border="1px"
           borderColor="teal.200"
         >
-          <Heading size="lg" mb={4} color="teal.700">
+          <Heading
+            size={{ base: "md", md: "lg" }}
+            mb={4}
+            color="teal.700"
+            px={{ base: 2, md: 0 }}
+          >
             Explore All Jakarta Destinations
           </Heading>
-          <Text color="teal.600" fontSize="lg" mb={8} maxW="2xl" mx="auto">
+          <Text
+            color="teal.600"
+            fontSize={{ base: "md", md: "lg" }}
+            mb={8}
+            maxW="2xl"
+            mx="auto"
+            px={{ base: 2, md: 0 }}
+            lineHeight="1.6"
+          >
             Browse through our complete collection of tourist attractions, from
             historic landmarks to modern entertainment venues.
           </Text>
           <Button
             as="a"
             href="/places"
-            size="lg"
+            size={{ base: "md", md: "lg" }}
             colorScheme="teal"
             borderRadius="full"
-            px={12}
-            py={6}
-            fontSize="lg"
+            px={{ base: 8, md: 12 }}
+            py={{ base: 4, md: 6 }}
+            fontSize={{ base: "sm", md: "lg" }}
             fontWeight="600"
             _hover={{
               transform: "translateY(-2px)",
@@ -319,7 +386,7 @@ const AppContent = () => {
   return (
     <Box minH="100vh">
       <Navbar />
-      <Box py={8}>
+      <Box py={{ base: 4, md: 8 }}>
         <Routes>
           <Route path="/" element={<HomePage userId={user?.id} />} />
           <Route path="/login" element={<Login />} />

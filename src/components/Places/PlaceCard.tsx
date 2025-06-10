@@ -30,7 +30,7 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
 
   return (
     <Box
-      maxW="320px"
+      maxW={{ base: "280px", sm: "300px", md: "320px" }}
       w="full"
       bg={cardBg}
       boxShadow="xl"
@@ -39,7 +39,7 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
       cursor="pointer"
       onClick={() => navigate(`/places/${id}`)}
       _hover={{
-        transform: "translateY(-8px)",
+        transform: { base: "translateY(-4px)", md: "translateY(-8px)" },
         boxShadow: "2xl",
         transition: "all 0.3s ease-in-out",
       }}
@@ -47,7 +47,11 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
       border="1px"
       borderColor={useColorModeValue("gray.100", "gray.700")}
     >
-      <Box position="relative" h="220px" overflow="hidden">
+      <Box
+        position="relative"
+        h={{ base: "180px", md: "220px" }}
+        overflow="hidden"
+      >
         <Image
           src={image_url}
           alt={name}
@@ -61,14 +65,14 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
         {/* Category Badge */}
         <Badge
           position="absolute"
-          top={3}
-          left={3}
+          top={{ base: 2, md: 3 }}
+          left={{ base: 2, md: 3 }}
           colorScheme="teal"
           variant="solid"
           borderRadius="full"
-          px={3}
+          px={{ base: 2, md: 3 }}
           py={1}
-          fontSize="xs"
+          fontSize={{ base: "2xs", md: "xs" }}
           fontWeight="600"
           textTransform="capitalize"
         >
@@ -79,14 +83,14 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
         {avgRating && (
           <Badge
             position="absolute"
-            top={3}
-            right={3}
+            top={{ base: 2, md: 3 }}
+            right={{ base: 2, md: 3 }}
             bg="blackAlpha.700"
             color="white"
             borderRadius="full"
-            px={2}
+            px={{ base: 1.5, md: 2 }}
             py={1}
-            fontSize="xs"
+            fontSize={{ base: "2xs", md: "xs" }}
             display="flex"
             alignItems="center"
             gap={1}
@@ -97,10 +101,14 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
         )}
       </Box>
 
-      <VStack p={6} spacing={4} align="stretch">
+      <VStack
+        p={{ base: 4, md: 6 }}
+        spacing={{ base: 3, md: 4 }}
+        align="stretch"
+      >
         <VStack spacing={2} align="stretch">
           <Heading
-            fontSize="lg"
+            fontSize={{ base: "md", md: "lg" }}
             fontWeight="700"
             color={useColorModeValue("gray.800", "white")}
             noOfLines={2}
@@ -109,17 +117,38 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
             {name}
           </Heading>
 
-          <Text color={textColor} fontSize="sm" noOfLines={2} lineHeight="1.4">
+          <Text
+            color={textColor}
+            fontSize={{ base: "xs", md: "sm" }}
+            noOfLines={2}
+            lineHeight="1.4"
+          >
             {description}
           </Text>
         </VStack>
 
-        <HStack justify="space-between" align="center">
-          <VStack spacing={1} align="start">
-            <Text fontSize="xs" color={textColor} fontWeight="500">
+        <HStack
+          justify="space-between"
+          align="center"
+          flexWrap={{ base: "wrap", md: "nowrap" }}
+        >
+          <VStack
+            spacing={1}
+            align="start"
+            minW={{ base: "auto", md: "120px" }}
+          >
+            <Text
+              fontSize={{ base: "2xs", md: "xs" }}
+              color={textColor}
+              fontWeight="500"
+            >
               Entry Price
             </Text>
-            <Text color={priceColor} fontWeight="700" fontSize="lg">
+            <Text
+              color={priceColor}
+              fontWeight="700"
+              fontSize={{ base: "md", md: "lg" }}
+            >
               {price === 0 ? "Free" : `Rp ${price.toLocaleString()}`}
             </Text>
           </VStack>
@@ -127,10 +156,11 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
           <Button
             leftIcon={<ViewIcon />}
             colorScheme="teal"
-            size="sm"
+            size={{ base: "xs", md: "sm" }}
             borderRadius="full"
             fontWeight="600"
-            px={6}
+            px={{ base: 4, md: 6 }}
+            fontSize={{ base: "xs", md: "sm" }}
             _hover={{
               transform: "translateY(-2px)",
               boxShadow: "lg",
@@ -141,7 +171,9 @@ const PlaceCard: React.FC<PlaceCardProps> = ({ place }) => {
               navigate(`/places/${id}`);
             }}
           >
-            View Details
+            {/* Tampilkan text lebih pendek di mobile */}
+            <Box display={{ base: "block", md: "none" }}>View</Box>
+            <Box display={{ base: "none", md: "block" }}>View Details</Box>
           </Button>
         </HStack>
       </VStack>
